@@ -28,33 +28,55 @@
     img {
       margin-bottom: 30px;
     }
+    #cursor {
+      position: absolute;
+      font-size: 24px;
+      transition: all 1s ease;
+      pointer-events: none;
+    }
   </style>
 </head>
 <body>
 
-  <img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" alt="Google">
+  <img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png">
   <input type="text" id="search" readonly>
   <button id="searchBtn">חפש עכשיו</button>
+
+  <div id="cursor">🖱️</div>
 
   <script>
     const text = "אסוס פתיחת קריאת שירות";
     const input = document.getElementById("search");
     const button = document.getElementById("searchBtn");
+    const cursor = document.getElementById("cursor");
 
     let i = 0;
+
+    // הקלדה
     const typing = setInterval(() => {
       if (i < text.length) {
         input.value += text.charAt(i);
         i++;
       } else {
         clearInterval(typing);
+        moveCursorToButton();
       }
     }, 120);
 
-    button.addEventListener("click", () => {
+    function moveCursorToButton() {
+      const rect = button.getBoundingClientRect();
+      cursor.style.left = rect.left + rect.width / 2 + "px";
+      cursor.style.top = rect.top + rect.height / 2 + "px";
+
+      setTimeout(() => {
+        goToGoogle();
+      }, 1200);
+    }
+
+    function goToGoogle() {
       window.location.href =
         "https://www.google.com/search?q=" + encodeURIComponent(text);
-    });
+    }
   </script>
 
 </body>
