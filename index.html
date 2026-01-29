@@ -45,17 +45,13 @@
   position: fixed;
   width: 14px;
   height: 22px;
-  background: url("data:image/svg+xml;utf8,\
-  <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 36'>\
-  <path fill='white' stroke='black' stroke-width='1' d='M2 0 L2 30 L8 24 L12 36 L16 34 L12 22 L22 22 Z'/>\
-  </svg>") no-repeat center;
-  background-size: contain;
   pointer-events: none;
   left: 50px;
   top: 50px;
   transition: left 1.5s ease-in-out, top 1.5s ease-in-out;
   z-index: 9999;
 }
+
   </style>
 </head>
 <body>
@@ -64,7 +60,10 @@
   <input type="text" id="search" readonly>
   <button id="searchBtn">חפש עכשיו</button>
 
-  <div id="cursor"></div>
+  <svg id="cursor" viewBox="0 0 24 36">
+  <path d="M2 0 L2 30 L8 24 L12 36 L16 34 L12 22 L22 22 Z"
+        fill="white" stroke="black" stroke-width="1"/>
+</svg>
 
   <script>
     const text = "אסוס פתיחת קריאת שירות";
